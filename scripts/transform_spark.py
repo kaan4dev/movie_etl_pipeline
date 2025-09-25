@@ -1,12 +1,18 @@
+from pathlib import Path
+
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, explode, when, from_json, regexp_replace, regexp_extract
 from pyspark.sql.types import ArrayType, IntegerType, DoubleType
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RAW_DATA_PATH = PROJECT_ROOT / "data" / "raw" / "movies_tmdb.csv"
+PROCESSED_DATA_PATH = PROJECT_ROOT / "data" / "processed" / "movies_cleaned_json"
 
 def main():
     spark = SparkSession.builder.appName("MoviesTransform").getOrCreate()
 
     df = spark.read.csv(
-        "/Users/kaancakir/data_projects_local/movie_etl_pipeline/data/raw/movies_tmdb.csv",
+        str(RAW_DATA_PATH),
         header=True,
         inferSchema=True
     )
@@ -73,7 +79,8 @@ def main():
         "vote_count"
     )
 
-    df.write.mode("overwrite").json("../data/processed/movies_cleaned_json")
+    PROCESSED_DATA_PATH.parent.mkdir(parents=True, exist_ok=True)
+    df.write.mode("overwrite").json(str(PROCESSED_DATA_PATH))
 
     print("Data cleaned and saved to: data/processed/movies_cleaned_json")
 

@@ -1,9 +1,14 @@
-import requests
-import pandas as pd
 import os
+from pathlib import Path
 
-API_KEY = "593682f76ba4b7e789eb5c52e7775f37"
+import pandas as pd
+import requests
+
 BASE_URL = "https://api.themoviedb.org/3"
+API_KEY = os.getenv("TMDB_API_KEY", "593682f76ba4b7e789eb5c52e7775f37")
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+RAW_DATA_DIR = PROJECT_ROOT / "data" / "raw"
 
 def fetch_popular_movies(pages = 500):
     all_movies = []
@@ -27,8 +32,9 @@ def main():
     movies = fetch_popular_movies(pages= 500)
     df = pd.DataFrame(movies)
 
-    os.makedirs("../data/raw", exist_ok=True)
-    df.to_csv("../data/raw/movies_tmdb.csv", index=False)
+    RAW_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    output_path = RAW_DATA_DIR / "movies_tmdb.csv"
+    df.to_csv(output_path, index=False)
     print("API data saved: data/raw/movies_tmdb.csv")
 
 if __name__ == "__main__":

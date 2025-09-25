@@ -1,16 +1,24 @@
-
+# Python cache and bytecode
 __pycache__/
-*.pyc
+*.py[cod]
 
-
+# macOS metadata
 .DS_Store
 
-
+# Virtual environments
 venv/
+airflow-venv/
 
-
+# Spark artifacts
 spark-warehouse/
 
+# Airflow runtime data
+airflow_home/
 
+# Local data files
 data/raw/
 data/processed/
+
+# Docker build outputs
+postgres-db-volume/
+*.log

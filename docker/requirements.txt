@@ -3,4 +3,4 @@ requests
 sqlalchemy
 psycopg2-binary
 pyspark
-apache-airflow==2.9.1
+Flask-Limiter<3
