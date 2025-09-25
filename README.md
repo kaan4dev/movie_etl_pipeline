@@ -1,6 +1,6 @@
-# 🎬 Movie ETL Pipeline with BigQuery & Airflow
+# Movie ETL Pipeline with BigQuery & Airflow
 
-## 📌 Project Overview
+## Project Overview
 This project demonstrates an **end-to-end data engineering pipeline** built with:
 - **Python & Requests** → Extract movie data from TMDB API
 - **PySpark** → Transform and clean raw data
@@ -12,7 +12,7 @@ The pipeline automates the journey of raw movie data into meaningful insights.
 
 ---
 
-## ⚙️ Pipeline Architecture
+## Pipeline Architecture
 ```text
          TMDB API
             |
