@@ -1,0 +1,16 @@
+
+__pycache__/
+*.pyc
+
+
+.DS_Store
+
+
+venv/
+
+
+spark-warehouse/
+
+
+data/raw/
+data/processed/
